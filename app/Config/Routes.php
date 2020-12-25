@@ -37,8 +37,12 @@ $routes->setAutoRoute(true);
  * Dinda - Prilla - Mila
  */
 $routes->get('/', 'Pages::index');
-$routes->get('/login', 'Auth::index');
-$routes->get('/register', 'Auth::register');
+$routes->get('/login', 'Login::index');
+$routes->get('/register', 'Register::index');
+$routes->get('/pendaftaran', 'Pages::pendaftaran', ['filter' => 'auth']);
+$routes->get('/kontak', 'Pages::kontak');
+
+$routes->get('/logout', 'Login::logout');
 //$routes->post('/mahasiswa/create/(:segment)', 'Mahasiswa::create/$1');
 
 /**

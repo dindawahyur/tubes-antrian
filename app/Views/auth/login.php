@@ -48,15 +48,18 @@
 
     </div>
     <!-- Default form login -->
-    <form class="text-center border border-light p-5" action="#!">
+    <form class="text-center border border-light p-5" action="<?php echo base_url('/login/auth') ?>" method="POST">
 
         <p class="h4 mb-4" style="font-weight: 0.3rem;">Masuk</p>
+        <?php if (session()->getFlashdata('msg')) : ?>
+            <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+        <?php endif; ?>
 
         <!-- Email -->
-        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" name="email">
 
         <!-- Password -->
-        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="password">
 
         <div class="d-flex justify-content-around">
             <div>

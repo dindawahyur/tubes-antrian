@@ -48,48 +48,52 @@
     <div class="gambar"> </div>
     <!-- Default form login -->
     <!-- Default form register -->
-    <form class="text-center border border-light p-5" action="#!">
+    <form class="text-center border border-light p-5" action="<?php echo base_url('/register/save') ?>" method="POST">
 
         <p class="h4 mb-4">Daftar</p>
-
+        <?= $validation->listErrors(); ?>
         <div class="form-row mb-4">
             <div class="col">
                 <!-- First name -->
-                <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Nama depan">
+                <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Nama depan" name="nama_depan" required>
             </div>
             <div class="col">
                 <!-- Last name -->
-                <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Nama belakang">
+                <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Nama belakang" name="nama_belakang" required>
             </div>
         </div>
+
         <div class="form-group">
             <label for="tanggal" style="margin-left: 0; font-size: smaller;">Tanggal Lahir</label>
-            <input type="date" name="tanggal" class="form-control" id="tanggal" value="">
+            <input type="date" name="ttl" class="form-control" id="tanggal" required>
         </div>
         <div class="form-group">
             <div class="form-check form-check-inline">
-                <p><input class="form-check-input" type="radio" name="gender" id="gender" value="Perempuan">Perempuan</p>
+                <p><input class="form-check-input" type="radio" name="gender" id="gender" value="Perempuan" required>Perempuan</p>
             </div>
             <div class="form-check form-check-inline">
-                <p><input class="form-check-input" type="radio" name="gender" id="gender" value="Laki-laki">Laki-laki</p>
+                <p><input class="form-check-input" type="radio" name="gender" id="gender" value="Laki-laki" required>Laki-laki</p>
             </div>
         </div>
         <!-- E-mail -->
-        <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+        <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" name="email" required>
+
+        <!-- Phone number -->
+        <input type="tel" id="defaultRegisterPhonePassword" class="form-control" placeholder="Nomor Telepon" aria-describedby="defaultRegisterFormPhoneHelpBlock" name="telp" required>
+        <br>
 
         <!-- Password -->
-        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password" required>
         <p id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
             Minimal 8 karakter
         </p>
-        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Konfirmasi Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-        <br>
-        <!-- Phone number -->
-        <input type="tel" id="defaultRegisterPhonePassword" class="form-control" placeholder="Nomor Telepon" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-        <br>
+        <!-- nanti kalo udah beres aku buat validasinya hehe -->
+        <!-- <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Konfirmasi Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <br> -->
+
         <!-- Newsletter -->
         <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+            <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter" required>
             <label class="custom-control-label" for="defaultRegisterFormNewsletter">Setuju dengan peraturan yang ada</label>
         </div>
 

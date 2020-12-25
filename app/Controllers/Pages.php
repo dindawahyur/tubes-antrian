@@ -26,6 +26,9 @@ class Pages extends BaseController
 			'title' => 'Pendaftaran Pasien'
 		];
 
+		$session = session();
+		//echo "Welcome back, " . $session->get('user_name');
+
 		return view('pages/pendaftaran', $data);
 	}
 	//--------------------------------------------------------------------

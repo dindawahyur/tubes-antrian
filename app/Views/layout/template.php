@@ -16,13 +16,13 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="font-family: 'Poppins', sans-serif;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#" style="color: aliceblue; font-weight: bold;">Rumah Sakit</a>
+        <div class="container">
+            <a class="navbar-brand" href="<?php echo base_url('/') ?>" style="color: aliceblue; font-weight: bold;">Rumah Sakit</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse batas" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" style="margin-left: 15%;">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?php echo base_url('/pages/index') ?>" style="color: white;">Beranda</a>
                     </li>
@@ -31,27 +31,35 @@
                             Layanan Rumah Sakit
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="<?php echo base_url('/pages/pendaftaran') ?>">Pendaftaran</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('/pendaftaran') ?>">Pendaftaran</a></li>
                             <li><a class="dropdown-item" href="#">Data Poli</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: white;" href="<?php echo base_url('/pages/kontak') ?>">Kontak</a>
+                        <a class="nav-link" style="color: white;" href="<?php echo base_url('/kontak') ?>">Kontak</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="color: white;" href="#">Info Covid</a>
                     </li>
                 </ul>
+
+
                 <ul class="navbar-nav profil-nav" style="margin-left: 20%;">
-                    <i class="fas fa-user nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;"></i>
-                    <ul class="dropdown-menu profil" aria-labelledby="navbarDropdownMenuLink1">
-                        <li><a class="dropdown-item" href="#">Profil Anda</a></li>
-                        <li><a class="dropdown-item" href="#">Riwayat Pengobatan</a></li>
-                        <li><a class="dropdown-item" href="#">Bantuan</a></li>
-                        <li><a class="dropdown-item" href="#">Keluar</a></li>
-                    </ul>
-                    </li>
+                    <?php if (!session()->get('logged_in')) : ?>
+                        <!-- kalo belum login -->
+                        <a class="nav-link" style="color: white;" href="<?php echo base_url('/login') ?>">Login</a>
+
+                    <?php else : ?>
+                        <!-- kalo udah login -->
+                        <i class="fas fa-user nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;"></i>
+                        <ul class="dropdown-menu profil" aria-labelledby="navbarDropdownMenuLink1">
+                            <li><a class="dropdown-item" href="#">Profil Anda</a></li>
+                            <li><a class="dropdown-item" href="#">Riwayat Pengobatan</a></li>
+                            <li><a class="dropdown-item" href="#">Bantuan</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('/logout') ?>">Keluar</a></li>
+                        </ul>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -63,7 +71,7 @@
     <footer class="page-footer font-small blue pt-4">
 
         <!-- Footer Links -->
-        <div class="container-fluid text-center text-md-left">
+        <div class="container text-center text-md-left">
 
             <!-- Grid row -->
             <div class="row">
