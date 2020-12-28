@@ -140,117 +140,131 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<div class="daftar">
-    <form class="text-center border border-light p-5" action="" method="">
 
-        <p class="h4 mb-4">Form Pendaftaran Pasien</p>
-        <hr>
-        <p class="h5 mb-4" style="margin-top: 5%; text-align: left;">Data Diri Pasien</p>
-        <div class="form-row mb-4">
-            <div class="col">
-                <!-- First name -->
-                <label for="fname" style="text-align: left;">Nama Depan</label>
-                <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Nama depan" required>
+<div class="container d-flex">
+    <div class="col-md-4 mr-1 mt-3">
+        <form class="text-center border border-light p-5 col-md-12" action="" method="">
+
+            <p class="h4 mb-4">Perawatan yang Dituju</p>
+            <hr>
+
+            <div class="form-group">
+                <label for="poli">Poliklinik</label>
+                <select class="form-control" name="poli" id="poliklinik">
+                    <option value="awal">-- Pilih Poliklinik --</option>
+                    <?php foreach ($poliklinik as $poli) : ?>
+                        <option value="<?= $poli['poli']; ?>"><?= $poli['poli']; ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
-            <div class="col">
-                <!-- Last name -->
-                <label for="lname" style="margin-left: 0">Nama Belakang</label>
-                <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Nama belakang" required>
+
+            <div class="form-group" id="apaya">
+                <label for="dokter">Dokter</label>
+                <!-- this itu ngambil teks nya,  -->
+                <select class="form-control" id="dokter" onchange="tampilJam(this)" name="dokter">
+                    <option value="awal">-- Cari Dokter --</option>
+                    <?php foreach ($dokter as $key) : ?>
+
+                        <option class="dataDokter" value="<?= $key['id_dokter']; ?>">
+                            <?= $key['dokter']; ?>
+                        </option>
+
+                    <?php endforeach; ?>
+                </select>
             </div>
-        </div>
-        <label for="nik" style="margin-left: 0">NIK</label>
-        <input type="text" id="nik" class="form-control" placeholder="NIK" required>
-        <br>
-        <div class="form-group">
-            <div class="form-row mb-4">
-                <div class="col">
-                    <!-- First name -->
-                    <label for="tempat_lahir" style="margin-left: 0">Tempat Lahir</label>
-                    <input type="text" id="tempat_lahir" class="form-control" placeholder="Tempat lahir" required>
+
+            <!-- Sign button -->
+
+            <!-- <button class="btn btn-info my-4 btn-block" type="submit">Kirim</button> -->
+        </form>
+    </div>
+    <div class="col-md-8 d-flex mt-3 mb-5">
+        <div class="row col-12" id="listDokter">
+
+            <?php foreach ($gabungan as $j) : ?>
+                <div class="col-md-5 mt-4 disini">
+                    <div class="card text-center">
+                        <img class="card-img-top mx-auto mt-3" style="height: 100px; width:100px" src="<?php echo base_url('images/avatar.png') ?>" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $j->dokter; ?></h5>
+                            <p class="nama"><?= $j->poli; ?></p>
+                            <form action="<?= base_url('cek/'); ?>" method="POST" style="margin:0; border:none; box-shadow: none; width:100%;">
+
+
+                                <select class="form-control" name="jadwal">
+                                    <option>-- Jam Praktek --</option>
+                                    <?php foreach ($jadwal as $data) :
+                                        if ($data['id_dokter'] == $j->id_dokter) { ?>
+                                            <option value="<?= $data['id_jadwal'] ?>">
+                                                <?= " jam " . $data['jam']; ?>
+                                            </option>
+                                        <?php
+                                        }
+
+                                        ?>
+                                    <?php endforeach; ?>
+                                </select>
+                                <br>
+
+
+                                <input type="submit" class="btn btn-primary" value="Buat Janji">
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <!-- Last name -->
-                    <label for="tanggal" style="margin-left: 0">Tanggal Lahir</label>
-                    <input type="date" name="tanggal" class="form-control" id="tanggal" value="" required>
-                </div>
-            </div>
+            <?php endforeach; ?>
+
+
         </div>
-        <div class="form-group">
-            <label for="gender" style="margin-left: 0">Jenis Kelamin</label>
-            <br>
-            <div class="form-check form-check-inline">
-                <p><input class="form-check-input" type="radio" name="gender" id="gender" value="Perempuan">Perempuan</p>
-            </div>
-            <div class="form-check form-check-inline">
-                <p><input class="form-check-input" type="radio" name="gender" id="gender" value="Laki-laki">Laki-laki</p>
-            </div>
-        </div>
-
-        <div class="form-row mb-4">
-            <div class="col">
-                <!-- E-mail -->
-                <label for="email" style="text-align: left;">Email</label>
-                <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" required>
-            </div>
-            <div class="col">
-                <!-- Phone number -->
-                <label for="telepon" style="margin-left: 0">Nomor Telepon</label>
-                <input type="tel" id="defaultRegisterPhonePassword" class="form-control" placeholder="Nomor Telepon" aria-describedby="defaultRegisterFormPhoneHelpBlock" required>
-            </div>
-        </div>
-
-        <label for="pendidikan" style="margin-left: 0">Pendidikan Terakhir</label>
-        <input type="text" id="pendidikan" class="form-control" placeholder="Pendidikan terakhir" required>
-        <br>
-
-        <label for="pekerjaan" style="margin-left: 0">Pekerjaan</label>
-        <input type="text" id="pekerjaan" class="form-control" placeholder="Pekerjaan" required>
-        <br>
-        <label for="bpjs" style="margin-left: 0">Nomor BPJS (jika menggunakan BPJS)</label>
-        <input type="text" id="bpjs" class="form-control" placeholder="Nomor BPJS">
-
-        <p class="h5 mb-4" style="margin-top: 10%; text-align: left;">Perawatan yang Diminta</p>
-
-        <div class="form-group">
-            <label for="poli">Poliklinik</label>
-            <select class="form-control" id="poli">
-                <option>Pilih Poliklinik</option>
-                <option>Poliklinik Gigi</option>
-                <option>Poliklinik Anak</option>
-                <option>Poliklinik THT</option>
-                <option>Poliklinik Radiologi</option>
-                <option>Dokter Umum</option>
-                <option>Poliklinik Penyakit Dalam</option>
-                <option>Poliklinik Kulit dan Kelamin</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="dokter">Dokter</label>
-            <select class="form-control" id="dokter">
-                <option>Pilih Dokter</option>
-                <option>Dr. </option>
-                <option>Dr. </option>
-                <option>Dr.</option>
-                <option>Dr.</option>
-                <option>Dr.</option>
-                <option>Dr.</option>
-                <option>Dr.</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="jam">Jam Kunjungan</label>
-            <select class="form-control" id="jam">
-                <option>Pilih Jam Kunjungan</option>
-                <option>08:00 WIB</option>
-                <option>09:00 WIB</option>
-                <option>10:00 WIB</option>
-                <option>11:00 WIB</option>
-            </select>
-        </div>
-        <!-- Sign up button -->
-        <button class="btn btn-info my-4 btn-block" type="submit">Kirim</button>
-    </form>
+    </div>
 </div>
+
+<script>
+    var valuePoliklinik = null;
+
+    function searchByPoli() {
+        var select = document.getElementById("poliklinik");
+        valuePoliklinik = select.options[select.selectedIndex].value;
+        //alert(valuePoliklinik);
+        // showBySearch();
+
+        var listDokter = document.getElementById('listDokter')
+        var listDokterToList = listDokter.getElementsByClassName('disini');
+
+        for (var i = 0; i < listDokterToList.length; i++) {
+            var cardBody = listDokterToList[i].getElementsByClassName('card-body')[0];
+            var namaDokter = cardBody.getElementsByClassName('card-title')[0].innerText;
+            var namaPoli = cardBody.getElementsByClassName('nama')[0].innerText;
+            console.log(namaPoli);
+
+            if (namaPoli == valuePoliklinik) {
+                listDokterToList[i].style.display = "block";
+            } else {
+                listDokterToList[i].style.display = "none";
+            }
+
+        }
+    }
+
+    function showBySearch() {
+        var listDokter = document.getElementById('listDokter')
+        var listDokterToList = listDokter.getElementsByClassName('disini');
+
+        for (var i = 0; i < listDokterToList.length; i++) {
+            var cardBody = listDokterToList[i].getElementsByClassName('card-body')[0];
+            var namaDokter = cardBody.getElementsByClassName('card-title')[0].innerText;
+            var namaPoli = cardBody.getElementsByClassName('nama')[0].innerText;
+            console.log(namaPoli);
+
+            if (namaPoli == valuePoliklinik) {
+                listDokterToList[i].style.display = "block";
+            } else {
+                listDokterToList[i].style.display = "none";
+            }
+
+        }
+    }
+
+    document.getElementById('poliklinik').addEventListener('change', searchByPoli);
+</script>
 <?= $this->endSection(); ?>

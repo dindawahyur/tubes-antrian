@@ -31,7 +31,7 @@
                             Layanan Rumah Sakit
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="<?php echo base_url('/pendaftaran') ?>">Pendaftaran</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('/pendaftaran') ?>">Cari Dokter</a></li>
                             <li><a class="dropdown-item" href="#">Data Poli</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
@@ -55,7 +55,7 @@
                         <i class="fas fa-user nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;"></i>
                         <ul class="dropdown-menu profil" aria-labelledby="navbarDropdownMenuLink1">
                             <li><a class="dropdown-item" href="#">Profil Anda</a></li>
-                            <li><a class="dropdown-item" href="#">Riwayat Pengobatan</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('riwayat') ?>">Riwayat Pengobatan</a></li>
                             <li><a class="dropdown-item" href="#">Bantuan</a></li>
                             <li><a class="dropdown-item" href="<?php echo base_url('/logout') ?>">Keluar</a></li>
                         </ul>

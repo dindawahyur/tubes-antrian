@@ -12,7 +12,6 @@ class Users extends Migration
 			'id'          => [
 				'type'           => 'INT',
 				'constraint'     => 11,
-				'unsigned'       => TRUE,
 				'auto_increment' => TRUE
 			],
 			'nama_depan'          => [

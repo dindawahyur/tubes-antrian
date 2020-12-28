@@ -37,12 +37,19 @@ $routes->setAutoRoute(true);
  * Dinda - Prilla - Mila
  */
 $routes->get('/', 'Pages::index');
-$routes->get('/login', 'Login::index');
-$routes->get('/register', 'Register::index');
-$routes->get('/pendaftaran', 'Pages::pendaftaran', ['filter' => 'auth']);
-$routes->get('/kontak', 'Pages::kontak');
 
+$routes->get('/login', 'Login::index');
 $routes->get('/logout', 'Login::logout');
+$routes->get('/register', 'Register::index');
+
+$routes->get('/pendaftaran', 'Pages::pendaftaran');
+$routes->get('/kontak', 'Pages::kontak');
+$routes->post('/cek', 'Pages::cek', ['filter' => 'auth']);
+
+$routes->post('/pasien', 'Pasien::save', ['filter' => 'auth']);
+$routes->post('/pasien/add', 'Pasien::save', ['filter' => 'auth']);
+
+$routes->get('/riwayat', 'Pages::riwayat', ['filter' => 'auth']);
 //$routes->post('/mahasiswa/create/(:segment)', 'Mahasiswa::create/$1');
 
 /**
