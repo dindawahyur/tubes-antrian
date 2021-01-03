@@ -14,8 +14,8 @@ class PoliklinikModel extends Model
         return $this->findAll();
     }
 
-    // public function getPasienDariUser($id_user)
-    // {
-    //     return $this->where(['id_user' => $id_user])->findAll();
-    // }
+    public function getPoliklinikById($id_poliklinik)
+    {
+        return $this->where(['id_poliklinik' => $id_poliklinik])->first();
+    }
 }

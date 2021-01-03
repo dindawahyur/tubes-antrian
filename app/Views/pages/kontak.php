@@ -3,7 +3,8 @@
 <?= $this->section('cssnya'); ?>
 <style>
     body {
-        background-image: radial-gradient(circle at top left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(img/hs4.jpg);
+        /* background-image: radial-gradient(circle at top left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(img/hs4.jpg); */
+        background-color: #fafaf4;
     }
 
     nav {

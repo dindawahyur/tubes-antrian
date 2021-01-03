@@ -8,6 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!--sweet alert-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"></link>-->
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet"></link>-->
+    <!--<link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" rel="stylesheet"></link>-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
     <title><?= $title; ?></title>
 
     <?= $this->renderSection('cssnya'); ?>
@@ -24,7 +34,7 @@
             <div class="collapse navbar-collapse batas" id="navbarNavDropdown">
                 <ul class="navbar-nav" style="margin-left: 15%;">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('/pages/index') ?>" style="color: white;">Beranda</a>
+                        <a class="nav-link active" aria-current="page" href="<?php echo base_url('/') ?>" style="color: white;">Beranda</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" style="color: white;" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,15 +42,15 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="<?php echo base_url('/pendaftaran') ?>">Cari Dokter</a></li>
-                            <li><a class="dropdown-item" href="#">Data Poli</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('/poliklinik') ?>">Data Poli</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="color: white;" href="<?php echo base_url('/kontak') ?>">Kontak</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: white;" href="#">Info Covid</a>
+                        <a class="nav-link" style="color: white;" href="<?php echo base_url('/infoCovid') ?>">Info Covid</a>
                     </li>
                 </ul>
 
@@ -54,9 +64,9 @@
                         <!-- kalo udah login -->
                         <i class="fas fa-user nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;"></i>
                         <ul class="dropdown-menu profil" aria-labelledby="navbarDropdownMenuLink1">
-                            <li><a class="dropdown-item" href="#">Profil Anda</a></li>
-                            <li><a class="dropdown-item" href="<?php echo base_url('riwayat') ?>">Riwayat Pengobatan</a></li>
-                            <li><a class="dropdown-item" href="#">Bantuan</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('/profil') ?>">Profil Anda</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('/riwayat') ?>">Riwayat Pengobatan</a></li>
+                            <li><a class="dropdown-item" href="<?php echo base_url('/bantuan') ?>">Bantuan</a></li>
                             <li><a class="dropdown-item" href="<?php echo base_url('/logout') ?>">Keluar</a></li>
                         </ul>
                     <?php endif; ?>
@@ -154,6 +164,8 @@
     <script src="https://kit.fontawesome.com/cb5f198089.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>

@@ -20,4 +20,10 @@ class AntrianModel extends Model
     {
         return $this->where(['id_user' => $id_user])->findAll();
     }
+
+    public function getCountAntrian($tanggal)
+    {
+        $db = \config\Database::connect();
+        return $db->query('SELECT Count(*) as jumlah from `antrian` where tgl_janji="' . $tanggal . '"');
+    }
 }

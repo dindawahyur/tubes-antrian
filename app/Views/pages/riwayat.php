@@ -49,6 +49,16 @@
 
     }
 
+    .wadah {
+        margin: 0 auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        background-color: white;
+        border-top-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        box-shadow: 2px 2px 7px 7px rgba(61, 61, 61, 0.4);
+    }
+
     .form-control {
         border-radius: 5px;
         height: 50px;
@@ -145,12 +155,12 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<div class="daftar">
-    <form class="text-center border border-light p-5">
+<div class="container">
+    <div class="wadah col-md-8 text-center border border-light p-5">
 
         <p class="h4 mb-4">Riwayat Pasien</p>
         <hr>
-        <div class="d-flex">
+        <div class="d-flex flex-wrap justify-content-around">
             <?php foreach ($riwayat as $j) : ?>
                 <div class="col-md-5 mt-4">
                     <div class="card text-center">
@@ -169,6 +179,6 @@
                 </div>
             <?php endforeach; ?>
         </div>
-    </form>
+    </div>
 </div>
 <?= $this->endSection(); ?>

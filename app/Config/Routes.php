@@ -43,8 +43,12 @@ $routes->get('/logout', 'Login::logout');
 $routes->get('/register', 'Register::index');
 
 $routes->get('/pendaftaran', 'Pages::pendaftaran');
+$routes->get('/poliklinik', 'Pages::poliklinik');
+$routes->get('/infoCovid', 'Pages::covid');
 $routes->get('/kontak', 'Pages::kontak');
+$routes->get('/bantuan', 'Pages::bantuan');
 $routes->post('/cek', 'Pages::cek', ['filter' => 'auth']);
+$routes->get('/profil', 'Pages::profil', ['filter' => 'auth']);
 
 $routes->post('/pasien', 'Pasien::save', ['filter' => 'auth']);
 $routes->post('/pasien/add', 'Pasien::save', ['filter' => 'auth']);

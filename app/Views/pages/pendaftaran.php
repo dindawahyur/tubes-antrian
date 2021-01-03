@@ -3,7 +3,8 @@
 <?= $this->section('cssnya'); ?>
 <style>
     body {
-        background-image: radial-gradient(circle at top left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(img/hs4.jpg);
+        /* background-image: radial-gradient(circle at top left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(img/hs4.jpg); */
+        background-color: #fafaf4;
     }
 
     nav {
@@ -141,6 +142,12 @@
 
 <?= $this->section('content'); ?>
 
+<?php if (isset($_SESSION['penuh'])) : ?>
+    <div class="alert alert-danger text-center" role="alert">
+        <?= $_SESSION['penuh']; ?>
+    </div>
+<?php endif; ?>
+
 <div class="container d-flex">
     <div class="col-md-4 mr-1 mt-3">
         <form class="text-center border border-light p-5 col-md-12" action="" method="">
@@ -148,27 +155,17 @@
             <p class="h4 mb-4">Perawatan yang Dituju</p>
             <hr>
 
+            <div class="form-group" id="apaya">
+                <label for="dokter">Dokter</label>
+                <input type="text" id="searchDokter" class="form-control" placeholder="Ketikan Nama Dokter">
+            </div>
+
             <div class="form-group">
                 <label for="poli">Poliklinik</label>
                 <select class="form-control" name="poli" id="poliklinik">
                     <option value="awal">-- Pilih Poliklinik --</option>
                     <?php foreach ($poliklinik as $poli) : ?>
                         <option value="<?= $poli['poli']; ?>"><?= $poli['poli']; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-
-            <div class="form-group" id="apaya">
-                <label for="dokter">Dokter</label>
-                <!-- this itu ngambil teks nya,  -->
-                <select class="form-control" id="dokter" onchange="tampilJam(this)" name="dokter">
-                    <option value="awal">-- Cari Dokter --</option>
-                    <?php foreach ($dokter as $key) : ?>
-
-                        <option class="dataDokter" value="<?= $key['id_dokter']; ?>">
-                            <?= $key['dokter']; ?>
-                        </option>
-
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -184,7 +181,7 @@
             <?php foreach ($gabungan as $j) : ?>
                 <div class="col-md-5 mt-4 disini">
                     <div class="card text-center">
-                        <img class="card-img-top mx-auto mt-3" style="height: 100px; width:100px" src="<?php echo base_url('images/avatar.png') ?>" alt="Card image cap">
+                        <img class="card-img-top mx-auto mt-3" style="height: 100px; width:100px" src="<?php echo base_url('img/avatar.png') ?>" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title"><?= $j->dokter; ?></h5>
                             <p class="nama"><?= $j->poli; ?></p>
@@ -221,6 +218,12 @@
 
 <script>
     var valuePoliklinik = null;
+    var valueDokter = null;
+
+    function searchByName() {
+        valueDokter = document.getElementById("searchDokter").value.toUpperCase();
+        duh();
+    }
 
     function searchByPoli() {
         var select = document.getElementById("poliklinik");
@@ -254,7 +257,6 @@
             var cardBody = listDokterToList[i].getElementsByClassName('card-body')[0];
             var namaDokter = cardBody.getElementsByClassName('card-title')[0].innerText;
             var namaPoli = cardBody.getElementsByClassName('nama')[0].innerText;
-            console.log(namaPoli);
 
             if (namaPoli == valuePoliklinik) {
                 listDokterToList[i].style.display = "block";
@@ -265,6 +267,28 @@
         }
     }
 
+    function duh() {
+        var listDokter = document.getElementById('listDokter')
+        var listDokterToList = listDokter.getElementsByClassName('disini');
+
+        for (var i = 0; i < listDokterToList.length; i++) {
+            var cardBody = listDokterToList[i].getElementsByClassName('card-body')[0];
+            var namaDokter = cardBody.getElementsByClassName('card-title')[0].innerText.toUpperCase();
+            console.log(valueDokter);
+
+            //  for (var j = 0; j < namaDokter.length; j++) {
+            if (namaDokter.indexOf(valueDokter) > -1) {
+                listDokterToList[i].style.display = "block";
+            } else {
+                listDokterToList[i].style.display = "none";
+            }
+
+            //}
+
+        }
+    }
+
+    document.getElementById('searchDokter').addEventListener("keyup", searchByName);
     document.getElementById('poliklinik').addEventListener('change', searchByPoli);
 </script>
 <?= $this->endSection(); ?>

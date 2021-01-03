@@ -140,6 +140,25 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
+<?php
+
+// 		if(){
+// 			echo "
+// 			<script>
+//                 swal({
+//                 title: 'Login dulu!',
+// 		     	text: 'Anda belum melakukan login',
+// 		      	icon: 'error',
+// 		      	button: 'Okay',
+// 		      	confirmButtonColor: '#e64942',
+//                 }).then(function() {
+// 				    window.location = 'index.php';
+// 				});
+//             </script>
+// 			";
+// 		}
+
+?>
 
 <div class="daftar">
     <form class="text-center border border-light p-5" id="manual" action="<?= base_url('/pages/antrian/') ?>" method="POST">
@@ -147,8 +166,8 @@
 
         <?php foreach ($pilih as $j) : ?>
             <div class="alert alert-success text-left" role="alert">
-                <b>Poliklinik<?= $j->poli; ?></b>
-                <p>Dokter <?= $j->dokter; ?></p>
+                <b><?= $j->poli; ?></b>
+                <p><?= $j->dokter; ?></p>
                 <?= $j->jam; ?> WIB
                 <input type="hidden" name="jadwal" value="<?= $j->id_jadwal; ?>">
             </div>
@@ -231,10 +250,10 @@
                 <label for="gender" style="margin-left: 0">Jenis Kelamin</label>
                 <br>
                 <div class="form-check form-check-inline">
-                    <p><input class="form-check-input" type="radio" name="gender" id="gender" value="Perempuan" required>Perempuan</p>
+                    <p><input class="form-check-input" type="radio" name="gender" value="Perempuan" required>Perempuan</p>
                 </div>
                 <div class="form-check form-check-inline">
-                    <p><input class="form-check-input" type="radio" name="gender" id="gender" value="Laki-laki" required>Laki-laki</p>
+                    <p><input class="form-check-input" type="radio" name="gender" value="Laki-laki" required>Laki-laki</p>
                 </div>
             </div>
 
@@ -277,6 +296,16 @@
         divPasien.style.display = 'block';
 
         var x = document.getElementById("myDate").autofocus;
+    }
+
+
+    function sweetAlert() {
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Antrian pada tanggal tersebut sudah pebuh',
+            confirmButtonColor: '#e64942',
+        })
     }
 </script>
 
