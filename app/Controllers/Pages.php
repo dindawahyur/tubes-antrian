@@ -31,7 +31,7 @@ class Pages extends BaseController
 	public function index()
 	{
 		$data = [
-			'title' => 'Ini Index rumah sakitnya guys'
+			'title' => 'Rumah Sakit'
 		];
 		return view('pages/beranda', $data);
 	}
@@ -85,11 +85,18 @@ class Pages extends BaseController
 
 	public function antrian()
 	{
+		$bantu = $this->request->getVar('jadwal'); //id_jadwal
 		$tgl_janji = $this->request->getVar('tanggal');
-		$cekPenuh = $this->antrianModel->getCountAntrian($tgl_janji)->getResult();
+		//$cekPenuh = $this->antrianModel->getCountAntrian($tgl_janji)->getResult();
+		$cekPenuh = $this->antrianModel->getCountKuota($tgl_janji, $bantu)->getResult();
+
+		$kuota = [
+			'data' => $this->jadwalModel->getJadwalById($bantu),
+		];
+		//dd($kuota['data']['kuota']);
 
 		$session = session();
-		if ($cekPenuh[0]->jumlah == "1") {
+		if ($cekPenuh[0]->jumlah < $kuota['data']['kuota']) {
 
 			//set session
 			$_SESSION['penuh'] = 'Maaf, Tanggal yang dipilih sudah penuh';
@@ -140,10 +147,17 @@ class Pages extends BaseController
 			'id_user' => $session->get('user_id'),
 		]);
 
+		$bantu = $this->request->getVar('jadwal'); //id_jadwal
 		$tgl_janji = $this->request->getVar('tanggal');
-		$cekPenuh = $this->antrianModel->getCountAntrian($tgl_janji)->getResult();
+		//$cekPenuh = $this->antrianModel->getCountAntrian($tgl_janji)->getResult();
+		$cekPenuh = $this->antrianModel->getCountKuota($tgl_janji, $bantu)->getResult();
 
-		if ($cekPenuh[0]->jumlah == "1") {
+		$kuota = [
+			'data' => $this->jadwalModel->getJadwalById($bantu),
+		];
+
+		$session = session();
+		if ($cekPenuh[0]->jumlah < $kuota['data']['kuota']) {
 
 			//set session
 			$session = session();
@@ -211,7 +225,7 @@ class Pages extends BaseController
 	public function poliklinik()
 	{
 		$data = [
-			'title' => "Polilinik",
+			'title' => "Poliklinik",
 			'poliklinik' => $this->poliModel->getAllPoliklinik(),
 		];
 
@@ -250,6 +264,33 @@ class Pages extends BaseController
 		return view("pages/profile", $data);
 	}
 
+	public function ubahProfile($id)
+	{
+
+		$data = [
+			'title' => "Profile",
+			'user' => $this->usersModel->getUserById($id),
+		];
+
+		return view("pages/editProfile", $data);
+	}
+
+	public function updateProfile($id)
+	{
+
+		$this->usersModel->save([
+			'id' => $id,
+			'nama_depan' => $this->request->getVar('nama_depan'),
+			'nama_belakang' => $this->request->getVar('nama_belakang'),
+			'ttl' => $this->request->getVar('tanggal'),
+			'gender' => $this->request->getVar('gender'),
+			'email' => $this->request->getVar('email'),
+			'telp' => $this->request->getVar('telp'),
+		]);
+
+		return redirect()->to(base_url('/profil'));
+	}
+
 	public function bantuan()
 	{
 		$data = [
@@ -257,5 +298,28 @@ class Pages extends BaseController
 		];
 
 		return view("pages/bantuan", $data);
+	}
+
+	public function sendMessage()
+	{
+		$nama = $this->request->getVar('nama');
+		$email_pengirim = $this->request->getVar('email_pengirim');
+		$subject = $this->request->getVar('subject');
+		$message = $this->request->getVar('message');
+
+		$email_smtp = \Config\Services::email();
+
+		$email_smtp->setFrom("dindawahyu@cehiji.com", "Kontak Rumah Sakit");
+		$email_smtp->setTo('dwrahmadani@gmail.com');
+
+		$email_smtp->setReplyTo($email_pengirim, $nama);
+
+		$email_smtp->setSubject($subject);
+		$email_smtp->setMessage($message);
+
+		$email_smtp->send();
+
+
+		return redirect()->to(base_url('/kontak'));
 	}
 }

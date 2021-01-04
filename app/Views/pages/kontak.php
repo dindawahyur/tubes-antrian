@@ -147,29 +147,32 @@
 
 <?= $this->section('content'); ?>
 <div class="daftar">
-    <form class="text-center border border-light p-5" action="" method="">
+    <form class="text-center border border-light p-5" action="<?php echo base_url('/pages/sendMessage') ?>" method="post">
 
         <p class="h4 mb-4">Kontak Kami</p>
         <hr>
 
-        <label for="nik" style="margin-left: 0">Nama</label>
-        <input type="text" id="nik" class="form-control" placeholder="Nama" required>
+
         <br>
         <div class="form-row mb-4">
             <div class="col">
-                <!-- E-mail -->
-                <label for="email" style="text-align: left;">Email</label>
-                <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" required>
+                <!-- Subject -->
+                <label for="nik" style="margin-left: 0">Nama</label>
+                <input type="text" id="nik" class="form-control" placeholder="Nama" name="nama" required>
             </div>
             <div class="col">
-                <!-- Phone number -->
-                <label for="telepon" style="margin-left: 0">Nomor Telepon</label>
-                <input type="tel" id="defaultRegisterPhonePassword" class="form-control" placeholder="Nomor Telepon" aria-describedby="defaultRegisterFormPhoneHelpBlock" required>
+                <!-- E-mail -->
+                <label for="email" style="text-align: left;">Email</label>
+                <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" name="email_pengirim" placeholder="E-mail" required>
             </div>
         </div>
 
+
+        <label for="telepon" style="margin-left: 0">Subject</label>
+        <input type="tel" id="defaultRegisterPhonePassword" class="form-control" name="subject" placeholder="Nomor Telepon" aria-describedby="defaultRegisterFormPhoneHelpBlock" required>
+        <br>
         <label for="pesan" style="margin-left: 0;">Pesan</label>
-        <input type="text" id="pekerjaan" class="form-control pesan" placeholder="Pesan Anda" required>
+        <input type="text" id="pekerjaan" class="form-control pesan" placeholder="Pesan Anda" name="message" required>
 
         <!-- Sign up button -->
         <button class="btn btn-info my-4 btn-block" type="submit">Kirim</button>

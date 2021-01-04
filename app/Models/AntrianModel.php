@@ -28,6 +28,12 @@ class AntrianModel extends Model
         return $db->query('SELECT Count(*) as jumlah from `antrian` where tgl_janji="' . $tanggal . '"');
     }
 
+    public function getCountKuota($tanggal, $id_jadwal)
+    {
+        $db = \config\Database::connect();
+        return $db->query('SELECT Count(*) as jumlah from `antrian` INNER JOIN `jadwal` ON `antrian`.`id_jadwal`=`jadwal`.`id_jadwal` where tgl_janji=" ' . $tanggal . '" and `antrian`.id_jadwal="' . $id_jadwal . '"');
+    }
+
     public function getAntrianByTanggal($tanggal)
     {
         $db = \config\Database::connect();

@@ -162,25 +162,28 @@
 
 <?= $this->section('content'); ?>
 <div class="main">
-    <form class="text-center border border-light p-5" action="#!">
+    <form class="border border-light p-5" action="<?= base_url('/pages/updateProfile/' . $user['id']) ?>">
 
         <p class="h4 mb-4">Profil Anda</p>
         <hr>
+        <label style="margin-left: 0; font-size: smaller;">Nama Lengkap</label>
         <div class="form-row mb-4">
             <div class="col">
                 <!-- First name -->
-                <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Nama depan">
+                <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Nama depan" value="<?= $user['nama_depan']; ?>" name="nama_depan">
             </div>
             <div class="col">
                 <!-- Last name -->
-                <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Nama belakang">
+                <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Nama belakang" value="<?= $user['nama_belakang']; ?>" name="nama_belakang">
             </div>
         </div>
-        <div class="form-group">
+        <div class=" form-group">
             <label for="tanggal" style="margin-left: 0; font-size: smaller;">Tanggal Lahir</label>
-            <input type="date" name="tanggal" class="form-control" id="tanggal" value="">
+            <input type="date" name="tanggal" class="form-control" id="tanggal" value="<?= $user['ttl']; ?>">
         </div>
+        <label for="gender" style="margin-left: 0; font-size: smaller;">Jenis Kelamin</label>
         <div class="form-group">
+            <!-- <input type="text" name="tanggal" class="form-control" id="tanggal" value="<?= $user['gender']; ?>"> -->
             <div class="form-check form-check-inline">
                 <p><input class="form-check-input" type="radio" name="gender" id="gender" value="Perempuan" <?php if ($user['gender'] == 'Perempuan') : echo 'checked';
                                                                                                             endif; ?>>Perempuan</p>
@@ -192,16 +195,19 @@
             </div>
         </div>
         <!-- E-mail -->
-        <input type="tel" id="defaultRegisterPhonePassword" class="form-control" placeholder="Nomor Telepon" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+        <label style="margin-left: 0; font-size: smaller;">Nomor Telepon</label>
+        <input type="tel" name="telp" id="defaultRegisterPhonePassword" class="form-control" placeholder="Nomor Telepon" aria-describedby="defaultRegisterFormPhoneHelpBlock" value="<?= $user['telp']; ?>">
         <br>
-        <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+        <label style="margin-left: 0; font-size: smaller;">Email</label>
+        <input type=" email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" value="<?= $user['email']; ?>">
 
         <!-- Password -->
-        <!-- <input style="margin-bottom: 10%;" type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock"> -->
+        <!-- <input style=" margin-bottom: 10%;" type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock"> -->
         <!-- Phone number -->
 
         <!-- Sign up button -->
-        <button class="btn btn-info my-4 btn-block" type="submit">Edit Profil</button>
+
+        <input type="submit" class="btn" style="color:white;" value="Simpan Perubahan">
     </form>
 </div>
 <?= $this->endSection(); ?>

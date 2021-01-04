@@ -206,7 +206,7 @@
         <!-- Phone number -->
 
         <!-- Sign up button -->
-        <button class="btn btn-info my-4 btn-block" type="submit">Edit Profil</button>
+        <a href="<?= base_url('/pages/ubahProfile/' . $user['id']) ?>" class="btn" style="color: white;">Edit Profil</a>
     </form>
 </div>
 <?= $this->endSection(); ?>
