@@ -54,6 +54,11 @@ $routes->post('/pasien', 'Pasien::save', ['filter' => 'auth']);
 $routes->post('/pasien/add', 'Pasien::save', ['filter' => 'auth']);
 
 $routes->get('/riwayat', 'Pages::riwayat', ['filter' => 'auth']);
+
+//admin
+$routes->get('/admin/dokter', 'Admindokter::index', ['filter' => 'auth']);
+$routes->get('/admin/jadwal', 'Adminjadwal::index', ['filter' => 'auth']);
+$routes->get('/admin/pasien', 'Admin::pasien', ['filter' => 'auth']);
 //$routes->post('/mahasiswa/create/(:segment)', 'Mahasiswa::create/$1');
 
 /**

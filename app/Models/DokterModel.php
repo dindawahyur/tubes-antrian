@@ -7,11 +7,17 @@ use CodeIgniter\Model;
 class DokterModel extends Model
 {
     protected $table = 'dokter';
-    //protected $allowedFields = ['nik', 'nama_depan', 'nama_belakang', 'tempat', 'tl', 'gender', 'email', 'telp', 'pendidikan', 'pekerjaan', 'bpjs', 'id_user'];
+    protected $allowedFields = ['dokter', 'spesialis', 'id_poliklinik'];
+    protected $primaryKey = 'id_dokter';
 
     public function getAllDokter()
     {
         return $this->findAll();
+    }
+
+    public function getDokterById($id_dokter)
+    {
+        return $this->where(['id_dokter' => $id_dokter])->first();
     }
 
     public function getDokterByPoli($id_poliklinik)

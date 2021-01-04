@@ -7,7 +7,9 @@ use CodeIgniter\Model;
 class JadwalModel extends Model
 {
     protected $table = 'jadwal';
-    //protected $allowedFields = ['nik', 'nama_depan', 'nama_belakang', 'tempat', 'tl', 'gender', 'email', 'telp', 'pendidikan', 'pekerjaan', 'bpjs', 'id_user'];
+    protected $allowedFields = ['jam', 'kuota', 'id_dokter'];
+    protected $primaryKey = 'id_jadwal';
+
 
     public function getAllJadwal()
     {

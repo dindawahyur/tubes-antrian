@@ -198,8 +198,8 @@
 
         <?php foreach ($pilih as $j) : ?>
             <div class="alert alert-success text-left" role="alert">
-                <b>Poliklinik<?= $j->poli; ?></b>
-                <p>Dokter <?= $j->dokter; ?></p>
+                <b><?= $j->poli; ?></b>
+                <p><?= $j->dokter; ?></p>
                 <?= $j->jam; ?> WIB
                 <input type="hidden" name="jadwal" value="<?= $j->id_jadwal; ?>">
             </div>
